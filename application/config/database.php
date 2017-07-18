@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'sqlite:'.APPPATH.'db/users.sqlite',
+	'dsn'	=> 'sqlite:'.APPPATH.'db/sorteio.sqlite',
 	'hostname' => 'localhost',
 	'username' => '',
 	'password' => '',
