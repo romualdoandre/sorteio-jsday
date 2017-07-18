@@ -1,5 +1,5 @@
 var assert=require('assert');
-var user=require('../model/user.js')
+var user=require('../model/user.js');
 
 describe('user',function(){
     describe('#login',function(){
