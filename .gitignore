@@ -1,6 +1,5 @@
 /vendor/
 /logs/*
-*.sqlite
 !/logs/README.md
 */config/development
 */logs/log-*.php
