@@ -14,6 +14,8 @@ echo heading('Sorteio', 1)
 .nbs(5)
 .anchor('participante/view', 'Todos', 'title="Todos"')
 .nbs(5)
-.anchor('participante/sorteados', 'Sorteados', 'title="Sorteados"');?>
+.anchor('participante/sorteados', 'Sorteados', 'title="Sorteados"')
+.nbs(5)
+.anchor('participante/logout', 'Sair', 'title="Sair"');?>
 </div>
 <div id="content">

@@ -28,7 +28,29 @@ class Participante extends CI_Controller {
 	}		
 	public function index()
 	{
-		$this->loadView('participante/index');
+		$logged=$this->session->has_userdata('logado');
+		if($logged){
+			$this->loadView('participante/index');
+		}
+		else
+			$this->load->view('participante/login_form');
+	}
+
+	public function login(){
+		$senha=$this->input->post('password');
+		if($senha=='jsday'){
+			$this->session->set_userdata('logado',true);
+			redirect('/participante/');
+		}
+		else{
+			$this->load->view('participante/login_form',array('mensagem'=>'Senha incorreta'));
+		}
+
+	}
+
+	public function logout(){
+		$this->session->unset_userdata('logado');
+		redirect('/participante/');
 	}
 
 	public function view($sexo=NULL){
@@ -47,9 +69,15 @@ class Participante extends CI_Controller {
 
 	private function loadView($viewName,$data=NULL)
 	{
-		$this->load->view('templates/header');
-		$this->load->view($viewName,$data);
-		$this->load->view('templates/footer');
+		$logged=$this->session->has_userdata('logado');
+		if($logged){
+			$this->load->view('templates/header');
+			$this->load->view($viewName,$data);
+			$this->load->view('templates/footer');
+		}
+		else
+			$this->load->view('participante/login_form');
+		
 	}
 
 	public function sorteados($sexo=NULL){
