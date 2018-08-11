@@ -63,7 +63,8 @@ class Participante extends CI_Controller {
 
 	public function save(){
 		$id=$this->input->post('id');
-		$this->participante_model->save($id);
+		$item=$this->input->post('item');
+		$this->participante_model->save($id,$item);
 		$this->loadView('participante/index',array('message'=>'Sorteado com sucesso!'));
 	}
 

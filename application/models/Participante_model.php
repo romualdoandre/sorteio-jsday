@@ -16,10 +16,11 @@ class Participante_model extends CI_Model {
             return $query->result_array();
         }
 
-        public function save($participante_id){
+        public function save($participante_id,$item){
             
             $this->db->where('id', $participante_id);
             $this->db->set('sorteado',true);
+            $this->db->set('item',$item);
             $this->db->update('participante');
         }
 
