@@ -8,18 +8,24 @@ class Participante_model extends CI_Model {
         }
 		public function get_sexo($sexo)
         {
-            $query = $this->db->get_where('participante',array('sexo'=>$sexo,'sorteado'=>false));
+            $query = $this->db->get_where('participante',array('sexo'=>$sexo,'sorteado'=>false,'presente'=>true));
             return $query->result_array();
         }
         public function get_all(){
-            $query = $this->db->get_where('participante',array('sorteado'=>false));
+            $query = $this->db->get_where('participante',array('sorteado'=>false,'presente'=>true));
             return $query->result_array();
         }
+        
+        public function get_ausentes(){
+			$query = $this->db->get_where('participante',array('sorteado'=>false,'presente'=>false));
+            return $query->result_array();
+		}
 
-        public function save($participante_id,$item){
+        public function save($participante_id,$item,$presente,$sorteado){
             
             $this->db->where('id', $participante_id);
-            $this->db->set('sorteado',true);
+            $this->db->set('sorteado',$sorteado);
+            $this->db->set('presente',$presente);
             $this->db->set('item',$item);
             $this->db->update('participante');
         }

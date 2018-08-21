@@ -54,18 +54,28 @@ class Participante extends CI_Controller {
 	}
 
 	public function view($sexo=NULL){
+		$data=array();
+		
 		if($sexo)
 			$data['participantes'] = $this->participante_model->get_sexo($sexo);
 		else
 			$data['participantes'] = $this->participante_model->get_all();
+		$data['sorteado']=array_rand($data['participantes']);
 		$this->loadView('participante/list',$data);
 	}
 
 	public function save(){
 		$id=$this->input->post('id');
 		$item=$this->input->post('item');
-		$this->participante_model->save($id,$item);
-		$this->loadView('participante/index',array('message'=>'Sorteado com sucesso!'));
+		$presente=$this->input->post('presente');
+		$sorteado=$this->input->post('sorteado');
+		$this->participante_model->save($id,$item,$presente,$sorteado);
+		$this->loadView('participante/index',array('message'=>'Salvo com sucesso!'));
+	}
+	
+	public function ausentes(){
+		$data['participantes']=$this->participante_model->get_ausentes();
+		$this->loadView('participante/list_sorteados',$data);
 	}
 
 	private function loadView($viewName,$data=NULL)
